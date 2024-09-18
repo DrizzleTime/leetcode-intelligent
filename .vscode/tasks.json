@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build",
+			"type": "shell",
+			"command": "bun run build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "bun run bun build",
+			"problemMatcher": []
+		}
+	]
+}

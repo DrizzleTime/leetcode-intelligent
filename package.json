@@ -1,0 +1,17 @@
+{
+  "name": "leetcode-intelligent",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "build": "bun build src/index.ts --outdir=dist --minify && bun inject-metadata.ts"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.51.0",
+    "monaco-languageclient": "^8.8.3",
+    "vscode-ws-jsonrpc": "^3.3.2"
+  }
+}

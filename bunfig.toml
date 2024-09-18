@@ -1,0 +1,6 @@
+# bunfig.toml
+[build]
+entry = "src/index.ts"
+outdir = "dist"
+[install]
+registry = "https://registry.npmmirror.com/"
