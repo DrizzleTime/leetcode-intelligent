@@ -1,4 +1,5 @@
 import { initCppCompletion } from './cpp';
+import { initJavaCompletion } from './java';
 import * as monaco from 'monaco-editor';
 function waitForMonaco(): Promise<typeof monaco> {
     return new Promise((resolve) => {
@@ -15,6 +16,8 @@ function waitForMonaco(): Promise<typeof monaco> {
 async function init() {
     const monaco = await waitForMonaco();
     initCppCompletion(monaco);
+    initJavaCompletion(monaco);
+
 }
 
 window.addEventListener('load', init);
