@@ -1,5 +1,3 @@
-import type { languages } from 'monaco-editor';
-
 export function getGeneralSuggestions(monaco: typeof import('monaco-editor'), range: any) {
     return [
         {
@@ -58,6 +56,69 @@ export function getGeneralSuggestions(monaco: typeof import('monaco-editor'), ra
             documentation: 'Creates a HashSet',
             range: range
         },
-        // 可以继续添加更多通用提示
+        {
+            label: 'LinkedList',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'LinkedList<${1:type}> ${2:list} = new LinkedList<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a LinkedList',
+            range: range
+        },
+        {
+            label: 'Stack',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'Stack<${1:type}> ${2:stack} = new Stack<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a Stack',
+            range: range
+        },
+        {
+            label: 'Queue',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'Queue<${1:type}> ${2:queue} = new LinkedList<>(); // 使用 LinkedList 实现队列',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a Queue',
+            range: range
+        },
+        {
+            label: 'PriorityQueue',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'PriorityQueue<${1:type}> ${2:pq} = new PriorityQueue<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a PriorityQueue',
+            range: range
+        },
+        {
+            label: 'Deque',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'Deque<${1:type}> ${2:deque} = new ArrayDeque<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a Deque',
+            range: range
+        },
+        {
+            label: 'Set',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'Set<${1:type}> ${2:set} = new HashSet<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a Set',
+            range: range
+        },
+        {
+            label: 'TreeMap',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'TreeMap<${1:K}, ${2:V}> ${3:map} = new TreeMap<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a TreeMap',
+            range: range
+        },
+        {
+            label: 'TreeSet',
+            kind: monaco.languages.CompletionItemKind.Snippet,
+            insertText: 'TreeSet<${1:type}> ${2:set} = new TreeSet<>();',
+            insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+            documentation: 'Creates a TreeSet',
+            range: range
+        },
     ];
 }
