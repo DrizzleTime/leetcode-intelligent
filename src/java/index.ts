@@ -1,6 +1,12 @@
 import type { languages } from 'monaco-editor';
 import { getArrayListSuggestions } from './arrayList';
 import { getHashMapSuggestions } from './hashMap';
+import { getListSuggestions } from './list';
+import { getSetSuggestions } from './set';
+import { getQueueSuggestions } from './queue';
+import { getStackSuggestions } from './stack';
+import { getDequeSuggestions } from './deque';
+
 import { getJavaRange, extractJavaVariables } from './utils';
 import { getGeneralSuggestions } from './getGeneralSuggestions';
 
@@ -49,9 +55,25 @@ export function initJavaCompletion(monaco: typeof import('monaco-editor')) {
                         case 'HashMap':
                             methodSuggestions = getHashMapSuggestions(monaco, range);
                             break;
+                        case 'List':
+                            methodSuggestions = getListSuggestions(monaco, range);
+                            break;
+                        case 'Set':
+                            methodSuggestions = getSetSuggestions(monaco, range);
+                            break;
+                        case 'Queue':
+                            methodSuggestions = getQueueSuggestions(monaco, range);
+                            break;
+                        case 'Stack':
+                            methodSuggestions = getStackSuggestions(monaco, range);
+                            break;
+                        case 'Deque':
+                            methodSuggestions = getDequeSuggestions(monaco, range);
+                            break;
                         default:
                             break;
                     }
+
                 }
             }
 
