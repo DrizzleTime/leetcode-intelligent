@@ -16,52 +16,61 @@ export function initCppCompletion(monaco: typeof import('monaco-editor')) {
         provideCompletionItems: (model, position) => {
             const word = model.getWordUntilPosition(position);
             const range = getRange(position, word);
-    
+
             const code = model.getValue();
-            const variables = extractVariables(code, position); // 传入当前光标位置，获取局部变量和全局变量
-    
-            const variableSuggestions: { label: string; kind: languages.CompletionItemKind; insertText: string; documentation: string; range: { startLineNumber: any; endLineNumber: any; startColumn: any; endColumn: any; }; }[] = [];
-            variables.forEach((type, name) => {
+            const variables = extractVariables(code, position); 
+
+            const variableSuggestions: { label: string; kind: languages.CompletionItemKind; insertText: string; documentation: string; range: any; }[] = [];
+            variables.forEach(({ type }, name) => {
                 variableSuggestions.push({
-                    label: name,  // 只提示变量名，而不是完整声明
+                    label: name,  
                     kind: monaco.languages.CompletionItemKind.Variable,
                     insertText: name,
                     documentation: `Variable of type ${type}`,
                     range: range
                 });
             });
-    
+
             const lineContent = model.getLineContent(position.lineNumber);
             const textBeforeCursor = lineContent.substring(0, position.column - 1).trim();
             const lastDotIndex = textBeforeCursor.lastIndexOf('.');
-            let functionSuggestions: ({ label: string; kind: languages.CompletionItemKind; insertText: string; insertTextRules: languages.CompletionItemInsertTextRule; documentation: string; range: any; } | { label: string; kind: languages.CompletionItemKind; insertText: string; documentation: string; range: any; insertTextRules?: undefined; })[] = [];
+            let functionSuggestions: { label: string; kind: languages.CompletionItemKind; insertText: string; documentation: string; range: any; }[] = [];
             let isDotAfterVariable = false;
-    
+
             if (lastDotIndex !== -1) {
                 const varName = textBeforeCursor.substring(0, lastDotIndex).trim();
                 if (variables.has(varName)) {
-                    const varType = variables.get(varName);
+                    const varInfo = variables.get(varName);
                     isDotAfterVariable = true;
-    
-                    if (varType?.startsWith('vector')) {
-                        functionSuggestions = getVectorSuggestions(monaco, range);
-                    } else if (varType?.startsWith('stack')) {
-                        functionSuggestions = getStackSuggestions(monaco, range);
-                    } else if (varType?.startsWith('queue')) {
-                        functionSuggestions = getQueueSuggestions(monaco, range);
-                    } else if (varType?.startsWith('deque')) {
-                        functionSuggestions = getDequeSuggestions(monaco, range);
-                    } else if (varType?.startsWith('map')) {
-                        functionSuggestions = getMapSuggestions(monaco, range);
-                    } else if (varType?.startsWith('unordered_map')) {
-                        functionSuggestions = getUnorderedMapSuggestions(monaco, range);
+
+                    // 根据变量类型返回相应的成员方法提示
+                    switch (varInfo.type) {
+                        case 'template':
+                            functionSuggestions = getVectorSuggestions(monaco, range);
+                            break;
+                        case 'stack':
+                            functionSuggestions = getStackSuggestions(monaco, range);
+                            break;
+                        case 'queue':
+                            functionSuggestions = getQueueSuggestions(monaco, range);
+                            break;
+                        case 'deque':
+                            functionSuggestions = getDequeSuggestions(monaco, range);
+                            break;
+                        case 'map':
+                            functionSuggestions = getMapSuggestions(monaco, range);
+                            break;
+                        case 'unordered_map':
+                            functionSuggestions = getUnorderedMapSuggestions(monaco, range);
+                            break;
+                        default:
+                            break;
                     }
                 }
             }
-    
+
             if (!isDotAfterVariable) {
                 const generalSuggestions = getGeneralSuggestions(monaco, range);
-    
                 return {
                     suggestions: [...generalSuggestions, ...variableSuggestions]
                 };
@@ -72,6 +81,4 @@ export function initCppCompletion(monaco: typeof import('monaco-editor')) {
             }
         }
     });
-    
-    
 }
