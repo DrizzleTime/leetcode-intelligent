@@ -7,6 +7,7 @@ const metadata = `
 // @author       ShiYu
 // @license      MIT
 // @match        https://leetcode.cn/problems/*
+// @match        https://leetcode.com/problems/* 
 // @grant        none
 // @antifeature  none
 // @run-at       document-end

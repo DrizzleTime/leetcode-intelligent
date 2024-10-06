@@ -42,9 +42,8 @@ export function initCppCompletion(monaco: typeof import('monaco-editor')) {
                 if (variables.has(varName)) {
                     const varInfo = variables.get(varName);
                     isDotAfterVariable = true;
-
                     // 根据变量类型返回相应的成员方法提示
-                    switch (varInfo.type) {
+                    switch (varInfo?.type) {
                         case 'template':
                             functionSuggestions = getVectorSuggestions(monaco, range);
                             break;

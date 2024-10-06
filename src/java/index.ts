@@ -48,7 +48,7 @@ export function initJavaCompletion(monaco: typeof import('monaco-editor')) {
                     const varInfo = variables.get(varName);
                     isDotAfterVariable = true;
                     // 根据变量类型返回相应的成员方法提示
-                    switch (varInfo.type) {
+                    switch (varInfo?.type) {
                         case 'ArrayList':
                             methodSuggestions = getArrayListSuggestions(monaco, range);
                             break;
