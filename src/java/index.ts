@@ -11,8 +11,6 @@ import { getJavaRange, extractJavaVariables } from './utils';
 import { getGeneralSuggestions } from './getGeneralSuggestions';
 
 export function initJavaCompletion(monaco: typeof import('monaco-editor')) {
-    monaco.languages.register({ id: 'java' });
-
     monaco.languages.registerCompletionItemProvider('java', {
         provideCompletionItems: (model, position) => {
             const word = model.getWordUntilPosition(position);

@@ -15,6 +15,8 @@ function waitForMonaco(): Promise<typeof monaco> {
 
 async function init() {
     const monaco = await waitForMonaco();
+    console.log('Monaco loaded');
+    console.log(monaco);
     initCppCompletion(monaco);
     initJavaCompletion(monaco);
 

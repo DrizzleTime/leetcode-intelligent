@@ -6,8 +6,10 @@ const metadata = `
 // @description  为 LeetCode 增加智能代码提示，提供代码补全功能
 // @author       ShiYu
 // @license      MIT
-// @match        https://leetcode.cn/problems/*
 // @match        https://leetcode.com/problems/* 
+// @match        https://leetcode.cn/problems/*
+// @match        https://www.leetcode.com/problems/* 
+// @match        https://www.leetcode.cn/problems/*
 // @grant        none
 // @antifeature  none
 // @run-at       document-end

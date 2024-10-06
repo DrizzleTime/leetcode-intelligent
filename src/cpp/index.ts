@@ -10,16 +10,12 @@ import { getUnorderedMapSuggestions } from './unordered_map';
 import type { languages } from 'monaco-editor';
 
 export function initCppCompletion(monaco: typeof import('monaco-editor')) {
-    monaco.languages.register({ id: 'cpp' });
-
     monaco.languages.registerCompletionItemProvider('cpp', {
         provideCompletionItems: (model, position) => {
             const word = model.getWordUntilPosition(position);
             const range = getRange(position, word);
-
             const code = model.getValue();
-            const variables = extractVariables(code, position); 
-
+            const variables = extractVariables(code, position);
             const variableSuggestions: { label: string; kind: languages.CompletionItemKind; insertText: string; documentation: string; range: any; }[] = [];
             variables.forEach(({ type }, name) => {
                 variableSuggestions.push({
