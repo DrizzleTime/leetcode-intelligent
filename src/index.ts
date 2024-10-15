@@ -1,6 +1,7 @@
-import { initCppCompletion } from './cpp';
-import { initJavaCompletion } from './java';
+import {initCppCompletion} from './cpp';
+import {initJavaCompletion} from './java';
 import * as monaco from 'monaco-editor';
+
 function waitForMonaco(): Promise<typeof monaco> {
     return new Promise((resolve) => {
         const interval = setInterval(() => {
@@ -15,8 +16,12 @@ function waitForMonaco(): Promise<typeof monaco> {
 
 async function init() {
     const monaco = await waitForMonaco();
-    console.log('Monaco loaded');
-    console.log(monaco);
+    monaco.editor.onDidCreateEditor((editor) => {
+        setTimeout(() => {
+            editor.updateOptions({suggestOnTriggerCharacters: true})
+            editor.updateOptions({quickSuggestions: {comments: 'on', strings: 'on', other: 'on'}})
+        }, 500)
+    })
     initCppCompletion(monaco);
     initJavaCompletion(monaco);
 
