@@ -7,7 +7,7 @@
     "typescript": "^5.0.0"
   },
   "scripts": {
-    "build": "bun build src/index.ts --outdir=dist --minify && bun inject-metadata.ts"
+    "build": "bun build src/index.ts --outdir=dist && bun inject-metadata.ts"
   },
   "dependencies": {
     "monaco-editor": "^0.51.0",

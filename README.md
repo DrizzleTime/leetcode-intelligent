@@ -15,7 +15,9 @@
 
 构建项目后，你可以将生成的代码复制到油猴（Tampermonkey）中使用。
 
-在运行 bun run build 之后，进入项目的 dist 目录。你会看到一个打包好的 .js 文件。你也可以直接在Releases中下载已经打包的js文件，复制里面的内容到油猴插件中即可使用，
+在运行 bun run build 之后，进入项目的 dist 目录。你会看到一个打包好的 .js 文件。
+
+当然也可以直接在线安装：https://greasyfork.org/zh-CN/scripts/512718-leetcode-intelligent
 
 打开浏览器中的 Tampermonkey（油猴）扩展程序。
 
