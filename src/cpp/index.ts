@@ -10,7 +10,13 @@ import { getUnorderedMapSuggestions } from './unordered_map';
 import type { languages } from 'monaco-editor';
 
 export function initCppCompletion(monaco: typeof import('monaco-editor')) {
+    monaco.editor.onDidCreateEditor((editor)=>{
+        setTimeout(()=> {
+            editor.updateOptions({suggestOnTriggerCharacters:  true})
+        },500);
+    })
     monaco.languages.registerCompletionItemProvider('cpp', {
+        triggerCharacters: [..."abcdefghijklnmopqrstuvwxyzABCDEFGHIJKLNMOPQRSTUVWXYZ.[]<>"],
         provideCompletionItems: (model, position) => {
             const word = model.getWordUntilPosition(position);
             const range = getRange(position, word);
